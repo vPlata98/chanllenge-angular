@@ -1,4 +1,19 @@
 {
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=827846
-  "recommendations": ["angular.ng-template"]
+  "recommendations": [
+    "johnpapa.angular-essentials",
+    "cyrilletuzi.angular-schematics",
+    "steoates.autoimport",
+    "formulahendry.auto-rename-tag",
+    "coenraads.bracket-pair-colorizer-2",
+    "eamodio.gitlens",
+    "abusaidm.html-snippets",
+    "davidanson.vscode-markdownlint",
+    "christian-kohler.npm-intellisense",
+    "quicktype.quicktype",
+    "christian-kohler.path-intellisense",
+    "meganrogge.template-string-converter",
+    "visualstudioexptteam.vscodeintellicode",
+    "vscode-icons-team.vscode-icons"
+  ]
 }

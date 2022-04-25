@@ -1,0 +1,131 @@
+.menu-container{
+  z-index: 999;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+#nav-fullscreen {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+  text-align: center;
+  height: 100%;
+	color: white;
+	font-family: sans-serif;
+	font-size: 6vh;
+  a{
+    color: white;
+  }
+  .list{
+    padding: 0%;
+  }
+}
+$toggle-size: 32px;
+$bar-size: $toggle-size / 8;
+$bar-space: ($toggle-size - ($bar-size * 5)) / 2;
+
+$bar2-top: $bar-size + $bar-space;
+$bar3-top: $bar2-top * 2;
+
+#nav-container {
+	margin-left: auto;
+	position: relative;
+}
+
+#nav-toggle {
+	display: block;
+	width: $toggle-size;
+	height: $toggle-size;
+
+	cursor: pointer;
+
+	transform: rotate(0deg);
+}
+
+#nav-toggle span {
+	background-color: black;
+	width: 100%;
+	height: $bar-size;
+
+	border-radius: $bar-size / 4;
+
+	display: block;
+	position: absolute;
+	left: 0;
+	content: '';
+
+	// transition time and time function
+	transition: .5s ease-in-out;
+}
+
+#nav-toggle span:nth-child(1) {
+  top: $bar-size;
+  transform-origin: left center;
+}
+
+#nav-toggle span:nth-child(2) {
+  top: $bar2-top + $bar-size;
+  transform-origin: left center;
+}
+
+#nav-toggle span:nth-child(3) {
+  top: $bar3-top + $bar-size;
+  transform-origin: left center;
+}
+
+#nav-toggle.open span:nth-child(1) {
+  transform: rotate(45deg);
+  top: -($toggle-size / 32) + $bar-size;
+  left: $bar-size;
+}
+
+#nav-toggle.open span:nth-child(2) {
+  width: 0%;
+  opacity: 0;
+}
+
+#nav-toggle.open span:nth-child(3) {
+  transform: rotate(-45deg);
+  top: $bar3-top + ($toggle-size / 32) + $bar-size;
+  left: $bar-size;
+}
+
+
+.close {
+  position: absolute;
+  right: 32px;
+  top: 32px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+  background-color: lightblue;
+}
+.close:hover {
+  opacity: 1;
+}
+.close:before, .close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 33px;
+  width: 2px;
+  background-color: #333;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
+
+@media (max-width: 600px) {
+  .close {
+    left: 50%;
+    top: 76%;
+    transform: translate(-50%, -76%);
+  }
+}
+
+

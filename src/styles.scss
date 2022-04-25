@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+  background-color:rgb(60, 60, 60);
+  li{
+    list-style-type: none;
+    text-decoration: none;
+    a{
+      text-decoration: none;
+    }
+  }
+}
