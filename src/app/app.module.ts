@@ -13,6 +13,7 @@ import { HomeComponent } from './views/home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { FormsModule } from '@angular/forms';
+import { ImgNotFoundDirective } from './shared/directives/img-not-found.directive';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     FooterComponent,
     HeaderComponent,
+    ImgNotFoundDirective,
   ],
   imports: [
     BrowserModule,

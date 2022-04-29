@@ -12,12 +12,15 @@
       </form>
     </div>
 </div>
+<div *ngIf="busqueda.length == 0 && valor.value" class="not-found">
+  <h2>No se han encontrado resultados para la busqueda</h2>
+</div>
  <ul class="busqueda-list"
   *ngIf="busqueda">
     <li *ngFor="let item of busqueda">
       <div
         class="item">
-        <img
+        <img appImgNotFound
           src="{{item.poster}}" />
           <p *ngIf="item.nombre"
             class="title"> {{item.nombre}} ({{item.anioSalida ? item.anioSalida.slice(0,4) : ""}}) </p>

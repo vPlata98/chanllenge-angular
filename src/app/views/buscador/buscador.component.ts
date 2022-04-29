@@ -70,7 +70,7 @@ export class BuscadorComponent implements OnInit {
     }
     BuscadorComponent.buscar = name;
     if(this.route.url.split(";")[0] !== "/buscador"){
-      this.route.navigate(['/buscador',{ buscar: name }]);
+      this.route.navigate(['/buscador']);
       return;
     }
     this.recuperarBusqueda(name);
