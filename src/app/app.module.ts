@@ -10,6 +10,9 @@ import { PeliculasComponent } from './views/peliculas/peliculas.component';
 import { MilistaComponent } from './views/milista/milista.component';
 import { MiperfilComponent } from './views/miperfil/miperfil.component';
 import { HomeComponent } from './views/home/home.component';
+import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,12 +23,15 @@ import { HomeComponent } from './views/home/home.component';
     PeliculasComponent,
     MilistaComponent,
     MiperfilComponent,
-    HomeComponent
+    HomeComponent,
+    FooterComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

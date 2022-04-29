@@ -1,1 +1,27 @@
-<p>buscador works!</p>
+<div class="busqueda">
+  <div class="wrap">
+    <div class="search">
+      <form ngNativeValidate  #form="ngForm" class="form"
+        (ngSubmit)="onSubmit(valor.value)">
+        <button
+          type="submit" class="searchButton">
+          <i class="gg-search"></i>
+        </button>
+        <input required #valor value=""
+          name="busqueda" type="text" class="searchTerm" placeholder="buscar">
+      </form>
+    </div>
+</div>
+ <ul class="busqueda-list"
+  *ngIf="busqueda">
+    <li *ngFor="let item of busqueda">
+      <div
+        class="item">
+        <img
+          src="{{item.poster}}" />
+          <p *ngIf="item.nombre"
+            class="title"> {{item.nombre}} ({{item.anioSalida ? item.anioSalida.slice(0,4) : ""}}) </p>
+      </div>
+    </li>
+  </ul>
+</div>

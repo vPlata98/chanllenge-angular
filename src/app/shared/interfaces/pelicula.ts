@@ -1,3 +1,5 @@
-export interface Pelicula {
-  nombre: string;
+import { Filme } from './filme';
+
+export interface Pelicula extends Filme {
+
 }

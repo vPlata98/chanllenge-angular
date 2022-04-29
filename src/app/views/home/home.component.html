@@ -1,1 +1,57 @@
+<app-buscador></app-buscador>
+<ul class="slider">
+  <li class="slides"
+  *ngFor="let pelicula of peliculaSlider.slice(0,2)">
+      <div
+        id="{{'slide' + pelicula}}">
+        <!-- <b>{{ pelicula['original_title'] }}</b> -->
+        <img src="{{ pelicula.fondo}}" />
+      </div>
+  </li>
+  <li class="slides"
+  *ngFor="let serie of serieSlider.slice(0,2)">
+      <div   id="{{'slide' + serie['id']}}">
+        <!-- <b>{{ serie['original_name'] }}</b> -->
+        <img src="{{ serie.fondo}}" />
+      </div>
+  </li>
+</ul>
+<ul class="menu">
+  <li *ngFor="let pelicula of peliculaSlider.slice(0,2)">
+    <a href="{{'#slide' + pelicula.id }}"></a>
+  </li>
+  <li *ngFor="let serie of serieSlider.slice(0,2)">
+    <a href="{{'#slide' + serie.id }}"></a>
+  </li>
+</ul>
+
+<ul class="novedades">
+  <li class="list">
+    <div class="subtitle">
+      <h2>Novedades</h2>
+      <button class="ver-todas">Ver todas ></button>
+    </div>
+    <div class="movies">
+      <div
+        *ngFor="let pelicula of peliculaSlider.slice(2,7)"
+        class="item">
+        <img
+          src="{{pelicula.poster}}" />
+          <p class="title"> {{pelicula.nombre}} ({{pelicula.anioSalida.slice(0,4)}}) </p>
+      </div>
+    </div>
+    <div class="subtitle">
+      <h2>Series</h2>
+      <button class="ver-todas">Ver todas ></button>
+    </div>
+    <div class="series">
+      <div *ngFor="let serie of serieSlider.slice(2,7)"
+        class="item">
+        <img
+          src="{{serie.poster}}" />
+        <p class="title">{{serie.nombre}} ({{serie.anioSalida.slice(0,4)}})</p>
+      </div>
+    </div>
+  </li>
+</ul>
 

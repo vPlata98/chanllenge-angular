@@ -1,0 +1,74 @@
+$toggle-size: 32px;
+$bar-size: $toggle-size / 8;
+$bar-space: ($toggle-size - ($bar-size * 5)) / 2;
+
+$bar2-top: $bar-size + $bar-space;
+$bar3-top: $bar2-top * 2;
+.header {
+  padding: 10px;
+  text-align: center;
+  background: black;
+  color: white;
+  font-size: 2vh;
+  .container{
+    display: flex;
+    flex-direction: row-reverse;
+    #nav-toggle {
+      display: block;
+      width: $toggle-size;
+      height: $toggle-size;
+
+      cursor: pointer;
+
+      transform: rotate(0deg);
+    }
+  }
+
+  #nav-toggle span {
+    background-color: white;
+    width: 100%;
+    height: $bar-size;
+
+    border-radius: $bar-size / 4;
+
+    display: block;
+    position: absolute;
+    right: 0;
+    content: '';
+
+    // transition time and time function
+    transition: .5s ease-in-out;
+  }
+
+  #nav-toggle span:nth-child(1) {
+    top: $bar-size;
+    transform-origin: right center;
+  }
+
+  #nav-toggle span:nth-child(2) {
+    top: $bar2-top + $bar-size;
+    transform-origin: right center;
+  }
+
+  #nav-toggle span:nth-child(3) {
+    top: $bar3-top + $bar-size;
+    transform-origin: right center;
+  }
+
+  #nav-toggle.open span:nth-child(1) {
+    transform: rotate(45deg);
+    top: -($toggle-size / 32) + $bar-size;
+    left: $bar-size;
+  }
+
+  #nav-toggle.open span:nth-child(2) {
+    width: 0%;
+    opacity: 0;
+  }
+
+  #nav-toggle.open span:nth-child(3) {
+    transform: rotate(-45deg);
+    top: $bar3-top + ($toggle-size / 32) + $bar-size;
+    left: $bar-size;
+  }
+}

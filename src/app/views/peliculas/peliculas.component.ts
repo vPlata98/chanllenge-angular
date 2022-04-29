@@ -1,3 +1,4 @@
+import { PeliculasAPIService } from './../../shared/services/peliculas-api.service';
 import { Component, OnInit } from '@angular/core';
 import { Pelicula } from 'src/app/shared/interfaces/pelicula';
 
@@ -7,23 +8,25 @@ import { Pelicula } from 'src/app/shared/interfaces/pelicula';
   styleUrls: ['./peliculas.component.scss']
 })
 export class PeliculasComponent implements OnInit {
-  public peliculas: Array<Pelicula>;
-  constructor() {
-    this.peliculas = [
-      {
-        nombre: "star wars"
-      },
-      {
-        nombre: "Indiana Jones"
-      },
-      {
-        nombre: "Interstellar"
-      }
-    ];
+  public peliculas: any;
+  public urlBase: string = "https://image.tmdb.org/t/p/w500";
+  constructor(private peliculasAPIService: PeliculasAPIService) {
+
    }
 
   ngOnInit(): void {
+    this.recuperarPeliculasPopulares();
   }
+
+  private recuperarPeliculasPopulares():void{
+    this.peliculasAPIService.mostrarPeliculasPopulares().subscribe(
+      (data) =>{
+        console.log(data);
+        this.peliculas = data;
+      }
+    )
+  }
+
   public mostrarTitulo(nombre: string): void{
      alert("Nombre de pelicula:" + nombre);
   }

@@ -1,12 +1,69 @@
 /* You can add global styles to this file, and also import other style files */
 body{
-  background-color: rgba(0,0,0,0.85);
+  margin: 0;
+  min-height: 100%;
+  ul{
+    padding: 0;
+    margin: 0;
+  }
   li{
     list-style-type: none;
     text-decoration: none;
     margin: 12px;
+    img{
+      width: 170px;
+      height: 250px;
+      margin: 2px;
+    }
     a{
       text-decoration: none;
     }
+  }
+  .wrap{
+    // width: 30%;
+    // position: absolute;
+    // top: 12%;
+    // left: 54%;
+    // transform: translate(-54%, -12%);
+    .search {
+      width: 100%;
+      display: flex;
+      flex-direction: row-reverse;
+      .form{
+        display: inherit;
+      }
+    }
+    .searchTerm {
+      width: 100%;
+      border: 3px solid grey;
+      border-left: none;
+      padding: 5px;
+      margin: 2vh 2vh 2vh 0vh;
+      height: 20px;
+      border-radius: 0 5px 5px 0;
+      outline: none;
+      color: #9DBFAF;
+      box-sizing: unset;
+    }
+
+    .searchTerm:focus{
+      color: #00B4CC;
+    }
+
+    .searchButton {
+      width: 40px;
+      height: 36px;
+      border: 3px solid grey;
+      background: white;
+      border-right: none;
+      margin: 2vh 0vh 2vh 2vh;
+      text-align: center;
+      color: grey;
+      border-radius: 5px 0 0 5px;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+
   }
 }
