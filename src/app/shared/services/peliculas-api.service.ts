@@ -9,6 +9,7 @@ export class PeliculasAPIService {
 
   baseURLPopulares: string = "https://api.themoviedb.org/3/discover/";
   baseURLBusqueda : string = "https://api.themoviedb.org/3/search/";
+  pagina          : number = 1;
   constructor(private httpClient: HttpClient) {
 
   }
@@ -46,16 +47,28 @@ export class PeliculasAPIService {
   public busquedaPeliculas(nombre:string): Observable<any>{
     var query = nombre.replace(" ","%20");
     return this.httpClient.get<any>(
-      this.baseURLPopulares + 'movie?api_key=c6ae695f9781fa411c0b2970dda2f11c&language=en-US&query='
-      + query + '&page=1&include_adult=false');
+      this.baseURLBusqueda + 'movie?api_key=c6ae695f9781fa411c0b2970dda2f11c&language=en-US&query='
+      + query + '&page='+ this.pagina +'&include_adult=false');
   }
 
   public busquedaSeries(nombre:string): Observable<any>{
     var query = nombre.replace(" ","%20");
     return this.httpClient.get<any>(
       this.baseURLBusqueda + 'tv?api_key=c6ae695f9781fa411c0b2970dda2f11c&language=en-US&query='
-      + query + '&page=1&include_adult=false');
+      + query + '&page='+ this.pagina +'&include_adult=false');
 
+  }
+
+  public incrementarPagina(){
+    this.pagina += 1
+  }
+
+  public decrementarPagina(){
+    this.pagina -= 1
+  }
+
+  public reiniciarPagina(){
+    this.pagina = 1
   }
 
 
