@@ -9,6 +9,7 @@ import { MilistaComponent } from './views/milista/milista.component';
 import { PeliculasComponent } from './views/peliculas/peliculas.component';
 import { MiperfilComponent } from './views/miperfil/miperfil.component';
 import { HomeComponent } from './views/home/home.component';
+import { FilmeDetalleComponent } from './views/filme-detalle/filme-detalle.component';
 
 
 
@@ -33,6 +34,9 @@ const routes: Routes = [
   },
   {
     path:'buscador', component: BuscadorComponent
+  },
+  {
+    path:'detalle/:categoria/:id', component: FilmeDetalleComponent
   },
   {
     path:'', redirectTo: '/home', pathMatch: 'full'

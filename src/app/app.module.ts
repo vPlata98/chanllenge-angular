@@ -14,6 +14,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { FormsModule } from '@angular/forms';
 import { ImgNotFoundDirective } from './shared/directives/img-not-found.directive';
+import { FilmeDetalleComponent } from './views/filme-detalle/filme-detalle.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ImgNotFoundDirective } from './shared/directives/img-not-found.directiv
     FooterComponent,
     HeaderComponent,
     ImgNotFoundDirective,
+    FilmeDetalleComponent,
   ],
   imports: [
     BrowserModule,

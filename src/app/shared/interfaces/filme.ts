@@ -4,4 +4,5 @@ export interface Filme {
   anioSalida: string;
   poster: string;
   fondo: string;
+  categoria: string;
 }

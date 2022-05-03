@@ -1,0 +1,58 @@
+.detalle-filme{
+  p{
+    margin: 0 2px;
+  }
+  .image-container{
+    .image{
+      width: 100%;
+      height: auto;
+      margin: 0;
+    }
+  }
+  .main-info-container{
+    display: flex;
+    transform: translate(0%, -136%);
+    justify-content: space-between;
+    color: white;
+    .main-info{
+      margin-left: 20px;
+      display: flex;
+      flex-direction: column;
+      .properties{
+        display: flex;
+      }
+    }
+    .puntuacion{
+      margin-right: 54px;
+      font-size: 3.5vh;
+      .bi-bookmark-fill{
+        display: none;
+      }
+    }
+  }
+  .extra-info{
+    justify-content: center;
+    justify-self: center;
+    margin: 0vh 9vh;
+    .info{
+      display: flex;
+      height: 53px;
+      justify-content: space-between;
+      .generos{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 200px;
+        .genero{
+          margin-right: 10px;
+        }
+      }
+      .pais{
+        margin-right: 8px;
+      }
+    }
+    .info, .sinopsis{
+      margin: 0 0 2vh 0;
+    }
+  }
+}

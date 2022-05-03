@@ -9,6 +9,8 @@ export class PeliculasAPIService {
 
   baseURLPopulares: string = "https://api.themoviedb.org/3/discover/";
   baseURLBusqueda : string = "https://api.themoviedb.org/3/search/";
+  baseURLDetalle  : string = "https://api.themoviedb.org/3/";
+  baseURLCreditos : string = "https://api.themoviedb.org/3/";
   pagina          : number = 1;
   constructor(private httpClient: HttpClient) {
 
@@ -57,6 +59,30 @@ export class PeliculasAPIService {
       this.baseURLBusqueda + 'tv?api_key=c6ae695f9781fa411c0b2970dda2f11c&language=en-US&query='
       + query + '&page='+ this.pagina +'&include_adult=false');
 
+  }
+
+  public busquedaPelicula(id: number): Observable<any>{
+    return this.httpClient.get<any>(
+      `${this.baseURLDetalle}movie/${id}?api_key=c6ae695f9781fa411c0b2970dda2f11c&language=en-US`
+    );
+  }
+
+  public busquedaSerie(id: number): Observable<any>{
+    return this.httpClient.get<any>(
+      `${this.baseURLDetalle}tv/${id}?api_key=c6ae695f9781fa411c0b2970dda2f11c&language=en-US`
+    );
+  }
+
+  public busquedaCreditosPelicula(id: number): Observable<any>{
+    return this.httpClient.get<any>(
+      `${this.baseURLCreditos}movie/${id}/credits?api_key=c6ae695f9781fa411c0b2970dda2f11c&language=en-US`
+    )
+  }
+
+  public busquedaCreditosSerie(id: number): Observable<any>{
+    return this.httpClient.get<any>(
+      `${this.baseURLCreditos}tv/${id}/credits?api_key=c6ae695f9781fa411c0b2970dda2f11c&language=en-US`
+    )
   }
 
   public incrementarPagina(){

@@ -20,10 +20,12 @@
     <li *ngFor="let item of busqueda">
       <div
         class="item">
-        <img appImgNotFound
-          src="{{item.poster}}" />
+        <a routerLink="{{'/detalle/'+ item.categoria + '/' + item.id}}">
+          <img appImgNotFound
+            src="{{item.poster}}" />
           <p *ngIf="item.nombre"
             class="title"> {{item.nombre}} ({{item.anioSalida ? item.anioSalida.slice(0,4) : ""}}) </p>
+        </a>
       </div>
     </li>
   </ul>

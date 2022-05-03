@@ -1,0 +1,46 @@
+<div class="detalle-filme" *ngIf="filme">
+  <div class="image-container">
+    <img class="image" appImgNotFound
+      src="{{filme.fondo}}" />
+    </div>
+    <div class="main-info-container">
+      <div class="main-info">
+        <div class="title">
+          {{filme.nombre}}
+        </div>
+        <div class="properties">
+          <p>{{filme.anioSalida ? filme.anioSalida.slice(0,4) : ""}}</p>
+          <p>| {{filme.duracion}}</p>
+        </div>
+      </div>
+      <div class="puntuacion">
+        <b>{{filme.puntuacion}}</b>
+        <i #seleccionado (click)="aniadirLista($event)" class="bi bi-bookmark-fill"></i>
+        <i #noSeleccionado (click)="aniadirLista($event)" class="bi bi-bookmark"></i>
+        <!-- <i class="fa fa-bookmark-o"></i> -->
+        <!-- <i class="gg-bookmark"></i> -->
+        <!-- <svg><use xlink:href="/all.svg#gg-bookmark"/></svg> -->
+      </div>
+    </div>
+    <div class="extra-info">
+      <div class="info" >
+        <div class="director">
+          <b>Director</b>
+          <p *ngIf="filme.director.length != 0">{{filme.director}}</p>
+        </div>
+        <div class="pais" >
+          <b>Pais</b>
+          <p >{{filme.country}}</p>
+        </div>
+        <div class="generos">
+          <div class="genero" *ngFor="let item of filme.generos">
+            <span >{{item["name"]}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="sinopsis">
+        <b>Sinopsis</b>
+        <p>{{filme.sinopsis}}</p>
+      </div>
+    </div>
+</div>
