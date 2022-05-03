@@ -25,6 +25,11 @@ export class PeliculasService {
       if(item === film) this.miLista.splice(index,1);
     });
   }
+  quitarFilmeArray(film:Filme, lista:[]){
+    lista.forEach( (item:Filme, index) => {
+      if(item.id === film.id) lista.splice(index,1);
+    });
+  }
   crearSerie(iterator:any):Serie{
     let serie:Serie = {
       id: iterator["id"],
