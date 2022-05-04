@@ -1,0 +1,40 @@
+.stars{
+  margin-left: 2vh;
+  direction: rtl;
+  i{
+    color: gray;
+  }
+  .bi-star:hover::before{
+    color:rgb(255,224,26);
+    content: "\f586";
+  }
+  .s1:hover ~ i::before{
+    color:rgb(255,224,26);
+    content: "\f586";
+  }
+  .s2:hover ~ i::before{
+    color:rgb(255,224,26);
+    content: "\f586";
+  }
+  .s3:hover ~ i::before{
+    color:rgb(255,224,26);
+    content: "\f586";
+  }
+  .s4:hover ~ i::before{
+    color:rgb(255,224,26);
+    content: "\f586";
+  }
+  .s5:hover ~ i::before{
+    color:rgb(255,224,26);
+    content: "\f586";
+  }
+}
+.modal{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  transform: translate(-50%, -50%);
+  height: 300px;
+  background: grey;
+}

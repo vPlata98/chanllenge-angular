@@ -1,1 +1,32 @@
-<p>milista works!</p>
+<div class="mi-lista-container">
+  <h3 class="title">Mi lista</h3>
+  <ul class="favorites-list"
+    *ngIf="miLista">
+      <li *ngFor="let item of miLista">
+        <div
+          class="item">
+          <a routerLink="{{'/detalle/'+ item.categoria + '/' + item.id}}">
+            <img appImgNotFound
+              src="{{item.poster}}" />
+            <p *ngIf="item.nombre"
+              class="title"> {{item.nombre}} ({{item.anioSalida ? item.anioSalida.slice(0,4) : ""}}) </p>
+          </a>
+          <div class="puntuacion">
+            <b>{{item.puntuacion}}</b>
+            <app-rating (rating)="showModal($event,item)"></app-rating>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="overlay" #overlay></div>
+  <div class="modal" #modal>
+    <p *ngIf="filme"><b>Puntuacion de {{filme.nombre}}: {{rating}} </b></p>
+
+    <div class="buttons">
+      <button (click)="hideModal()">Continuar</button>
+      <button (click)="hideModal()">Cancelar</button>
+    </div>
+
+  </div>
+

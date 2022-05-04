@@ -1,0 +1,93 @@
+.mi-lista-container{
+  .title{
+    margin: 3vh 3vh;
+  }
+  .favorites-list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    .item{
+      margin: 2px;
+      width: 200px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      a{
+        text-align: center;
+      }
+      .puntuacion{
+        display: flex;
+        align-items: center;
+        .stars{
+          margin-left: 2vh;
+          direction: rtl;
+          i{
+            color: gray;
+          }
+          .bi-star:hover::before{
+            color:rgb(255,224,26);
+            content: "\f586";
+          }
+          .s1:hover ~ i::before{
+            color:rgb(255,224,26);
+            content: "\f586";
+          }
+          .s2:hover ~ i::before{
+            color:rgb(255,224,26);
+            content: "\f586";
+          }
+          .s3:hover ~ i::before{
+            color:rgb(255,224,26);
+            content: "\f586";
+          }
+          .s4:hover ~ i::before{
+            color:rgb(255,224,26);
+            content: "\f586";
+          }
+          .s5:hover ~ i::before{
+            color:rgb(255,224,26);
+            content: "\f586";
+          }
+        }
+      }
+      .title{
+        font-size: 2.2vh;
+        font-weight: bolder;
+        width: 170px;
+        text-align: center;
+        min-height: 31px;
+      }
+    }
+  }
+}
+.overlay{
+    position:fixed;
+    left:0;
+    top:0;
+    width:100vw;
+    height:100vh;
+    display:none;
+    background-color:#000;
+    opacity:0.5;
+}
+.modal{
+  z-index: 999;
+  display:none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  transform: translate(-50%, -50%);
+  height: 300px;
+  background: white;
+
+  .buttons{
+    display: flex;
+    position: fixed;
+    justify-content: space-around;
+    width: 100%;
+    bottom: 44px;
+  }
+
+}
