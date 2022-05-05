@@ -29,7 +29,6 @@
     align-content: center;
     flex-wrap: wrap;
     flex-direction: row;
-    // overflow-x: scroll;
     .item{
       margin: 2px;
       width: 200px;
@@ -79,7 +78,6 @@ ul.slider div{
   background-color: white;
   width: 100%;
   animation: 24s autoplay1 infinite;
-  // transition: 2.5s ease-in-out;
 }
 
 
@@ -110,11 +108,11 @@ ul.slider div:target{
 
 
 $toggle-size: 32px;
-$bar-size: $toggle-size / 8;
-$bar-space: ($toggle-size - ($bar-size * 5)) / 2;
+$bar-size: calc($toggle-size / 8);
+$bar-space: calc(calc($toggle-size - calc($bar-size * 5)) / 2);
 
-$bar2-top: $bar-size + $bar-space;
-$bar3-top: $bar2-top * 2;
+$bar2-top: calc($bar-size + $bar-space);
+$bar3-top: calc($bar2-top * 2);
 
 .menu {
 	display: block;
@@ -142,19 +140,14 @@ $bar3-top: $bar2-top * 2;
 	width: 100%;
 	height: $bar-size;
   top: 0;
-	border-radius: $bar-size / 4;
+	border-radius: calc($bar-size / 4);
 
 	display: block;
 	position: absolute;
 	left: 0;
 	content: '';
-
-	// transition time and time function
-	// animation-name: line;
-  // animation-duration: 4s;
   animation-timing-function: ease;
   animation-fill-mode: forwards;
-  // animation: 24s autoplay1 infinite;
   animation:24s line infinite;
 }
 @keyframes autoplay1 {

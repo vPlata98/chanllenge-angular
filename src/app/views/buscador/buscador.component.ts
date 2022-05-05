@@ -3,9 +3,9 @@ import { Filme } from './../../shared/interfaces/filme';
 import { Serie } from './../../shared/interfaces/serie';
 import { Pelicula } from 'src/app/shared/interfaces/pelicula';
 import { PeliculasAPIService } from 'src/app/shared/services/peliculas-api.service';
-import { Component, ComponentFactoryResolver, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as globals from 'src/app/views/globals'
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 
 
@@ -31,7 +31,7 @@ export class BuscadorComponent implements OnInit {
 
 
   get historial(){
-    return this.peliculaService.historial;
+    return this.peliculaService.localItem("historial");
   }
   ngOnInit(): void {
     // console.log(this.routeAc.snapshot.paramMap.get("buscar"));
@@ -73,7 +73,7 @@ export class BuscadorComponent implements OnInit {
       this.peliculaServiceAPI.reiniciarPagina();
     }
     BuscadorComponent.buscar = name;
-    this.peliculaService.guardarHistorial(name);
+    this.peliculaService.guardarLocal("historial",name);
     if(this.route.url.split(";")[0] !== "/buscador"){
       this.route.navigate(['/buscador']);
       return;

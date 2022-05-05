@@ -6,7 +6,7 @@
         <div
           class="item">
           <a routerLink="{{'/detalle/'+ item.categoria + '/' + item.id}}">
-            <img appImgNotFound
+            <img appImgNotFound [alt]="item.nombre"
               src="{{item.poster}}" />
             <p *ngIf="item.nombre"
               class="title"> {{item.nombre}} ({{item.anioSalida ? item.anioSalida.slice(0,4) : ""}}) </p>

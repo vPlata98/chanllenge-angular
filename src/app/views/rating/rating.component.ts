@@ -20,11 +20,6 @@ export class RatingComponent implements OnInit {
     console.log(event.target!.attributes.id.nodeValue);
     this.rating = event.target!.attributes.id.nodeValue;
     this.onRating.emit(this.rating);
-    // let div = document.createElement("div")
-    // let b = document.createElement("b")
-    // b.nodeValue = "53224234234234234234";
-    // div.appendChild(b);
-    // document.appendChild(div);
   }
 
 }

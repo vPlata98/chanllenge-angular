@@ -1,10 +1,8 @@
 import { PeliculasService } from './../../shared/services/peliculas.service';
-import { BuscadorComponent } from './../buscador/buscador.component';
 import { Serie } from './../../shared/interfaces/serie';
 import { Router } from '@angular/router';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PeliculasAPIService } from 'src/app/shared/services/peliculas-api.service';
-import * as globals from 'src/app/views/globals'
 import { Pelicula } from 'src/app/shared/interfaces/pelicula';
 
 @Component({
@@ -14,9 +12,9 @@ import { Pelicula } from 'src/app/shared/interfaces/pelicula';
 })
 export class HomeComponent implements OnInit {
 
-  public peliculaSlider: Pelicula[] = [];
-  public serieSlider: Serie[] = [];
-  public urlBase: string = globals.urlBase;
+  private pelicula: Pelicula[] = [];
+  private serie: Serie[] = [];
+
 
   constructor(
     private router: Router,
@@ -26,22 +24,38 @@ export class HomeComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.recuperarPeliculasPopulares();
+    console.log(this.peliculasService.localItem("homePelicula",24))
+    if(!this.peliculasService.localItem("homePelicula",24)[0]["busqueda"]
+      && !this.peliculasService.localItem("homeSerie",24)[0]["busqueda"] ){
+        this.recuperarPeliculasPopulares();
+      }
+  }
+  get peliculaSlider():any{
+    return this.pelicula.length != 0 ? [...this.pelicula] :
+      this.peliculasService.localItem("homePelicula",24)[0].busqueda;
+  }
+  get serieSlider():any{
+    return this.pelicula.length != 0 ? [...this.serie] :
+      this.peliculasService.localItem("homeSerie",24)[0].busqueda;
   }
   private recuperarPeliculasPopulares():void{
     this.peliculasAPIService.mostrarPeliculasPopulares().subscribe(
       (data) =>{
         for (const iterator of data["results"]) {
-          this.peliculaSlider.push(this.peliculasService.crearPelicula(iterator))
+          let peli = this.peliculasService.crearPelicula(iterator)
+          this.pelicula.push(peli)
         }
+        this.peliculasService.guardarLocal("homePelicula",this.pelicula,24);
       }
     );
 
     this.peliculasAPIService.mostrarSeriesPopulares().subscribe(
       (data) =>{
         for (const iterator of data["results"]) {
-          this.serieSlider.push(this.peliculasService.crearSerie(iterator));
+          let serie = this.peliculasService.crearSerie(iterator)
+          this.serie.push(serie);
         }
+        this.peliculasService.guardarLocal("homeSerie",this.serie,24);
       }
     );
   }

@@ -18,6 +18,7 @@ export class MilistaComponent implements OnInit {
   @ViewChild("overlay") overlay!: ElementRef<HTMLDivElement>;
 
   ngOnInit(): void {
+    console.log("creado");
     let item = localStorage.getItem("milista")
     if (item) {
       this.miLista = JSON.parse(item);

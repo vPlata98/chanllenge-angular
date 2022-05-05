@@ -3,7 +3,7 @@ import { PeliculasService } from './../../shared/services/peliculas.service';
 import { PeliculasAPIService } from 'src/app/shared/services/peliculas-api.service';
 import { Filme } from './../../shared/interfaces/filme';
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit, ViewChild, ElementRef, AfterContentInit, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 
 @Component({
   selector: 'app-filme-detalle',
@@ -39,7 +39,6 @@ export class FilmeDetalleComponent implements OnInit ,AfterViewChecked {
     if(item){
       miLista = JSON.parse(item);
     }
-    console.log(miLista.filter((ele:Filme) => this.filme.id == ele.id));
     if(this.filme && miLista.filter((ele:Filme) => this.filme.id == ele.id).length != 0){
       this.seleccionado.nativeElement.style.display = "inline-block";
       this.noSeleccionado.nativeElement.style.display = "none";

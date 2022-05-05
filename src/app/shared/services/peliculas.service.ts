@@ -18,9 +18,9 @@ export class PeliculasService {
     return [...this.miLista];
   }
 
-  get historial(){
-    this.borrarHistorialCaducado();
-    return JSON.parse(localStorage.getItem("historial")!) || [];
+  localItem(itemName:string,ttl:number = 1){
+    this.borrarLocalCaducado(itemName,ttl);
+    return JSON.parse(localStorage.getItem(itemName)!) || [];
   }
   aniadirFilme(film:Filme){
     this.miLista.push(film);
@@ -81,8 +81,8 @@ export class PeliculasService {
     console.log(director);
     return director[0]["name"];
   }
-  borrarHistorialCaducado(){
-    let historial = JSON.parse(localStorage.getItem("historial")!) || [];
+  borrarLocalCaducado(itemName:string,ttl:number=1){
+    let historial = JSON.parse(localStorage.getItem(itemName)!) || [];
 
     historial = historial.filter((element:any) => {
       var date = new Date();
@@ -91,24 +91,24 @@ export class PeliculasService {
         historialFecha.getFullYear(),
         historialFecha.getMonth(),
         historialFecha.getDate(),
-        historialFecha.getHours()+ 1);
-      console.log(historial);
-      console.log(element.busqueda);
+        historialFecha.getHours()+ ttl);
       if(dateHour < date  ){
         console.log("eliminando");
         return false;
       }
       return true;
     });
-    localStorage.setItem("historial",JSON.stringify(historial));
+    localStorage.setItem(itemName,JSON.stringify(historial));
   }
-  guardarHistorial(name:string){
-    this.borrarHistorialCaducado();
-    let historial = JSON.parse(localStorage.getItem("historial")!) || [];
+  guardarLocal(itemName:string, name:any,ttl:number = 1 ){
+    this.borrarLocalCaducado(itemName,ttl);
+    let historial = JSON.parse(localStorage.getItem(itemName)!) || [];
+
     historial.unshift({
       busqueda: name,
       fecha: new Date()
     })
-    localStorage.setItem("historial",JSON.stringify(historial.splice(0,5)));
+
+    localStorage.setItem(itemName,JSON.stringify(historial));
   }
 }

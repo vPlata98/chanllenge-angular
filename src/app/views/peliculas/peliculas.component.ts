@@ -1,6 +1,5 @@
 import { PeliculasAPIService } from './../../shared/services/peliculas-api.service';
 import { Component, OnInit } from '@angular/core';
-import { Pelicula } from 'src/app/shared/interfaces/pelicula';
 
 @Component({
   selector: 'app-peliculas',

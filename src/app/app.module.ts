@@ -16,6 +16,8 @@ import { FormsModule } from '@angular/forms';
 import { ImgNotFoundDirective } from './shared/directives/img-not-found.directive';
 import { FilmeDetalleComponent } from './views/filme-detalle/filme-detalle.component';
 import { RatingComponent } from './views/rating/rating.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,13 @@ import { RatingComponent } from './views/rating/rating.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

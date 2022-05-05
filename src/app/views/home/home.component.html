@@ -5,14 +5,16 @@
       <div
         id="{{'slide' + pelicula}}">
         <!-- <b>{{ pelicula['original_title'] }}</b> -->
-        <img appImgNotFound src="{{ pelicula.fondo}}" />
+        <img [alt]="pelicula.nombre"
+          appImgNotFound src="{{ pelicula.fondo}}" />
       </div>
   </li>
   <li class="slides"
   *ngFor="let serie of serieSlider.slice(0,2)">
       <div   id="{{'slide' + serie['id']}}">
         <!-- <b>{{ serie['original_name'] }}</b> -->
-        <img appImgNotFound src="{{ serie.fondo}}" />
+        <img [alt]="serie.nombre"
+          appImgNotFound src="{{ serie.fondo}}" />
       </div>
   </li>
 </ul>
@@ -35,7 +37,7 @@
       <div
         *ngFor="let pelicula of peliculaSlider.slice(2,7)"
         class="item">
-        <img appImgNotFound
+        <img appImgNotFound [alt]="pelicula.nombre"
           src="{{pelicula.poster}}" />
           <p class="title"> {{pelicula.nombre}} ({{pelicula.anioSalida.slice(0,4)}}) </p>
       </div>
@@ -47,7 +49,7 @@
     <div class="series">
       <div *ngFor="let serie of serieSlider.slice(2,7)"
         class="item">
-        <img appImgNotFound
+        <img appImgNotFound [alt]="serie.nombre"
           src="{{serie.poster}}" />
         <p class="title">{{serie.nombre}} ({{serie.anioSalida.slice(0,4)}})</p>
       </div>

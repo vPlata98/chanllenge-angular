@@ -1,6 +1,6 @@
 <div class="detalle-filme" *ngIf="filme">
   <div class="image-container">
-    <img class="image" appImgNotFound
+    <img class="image" appImgNotFound [alt]="filme.nombre"
       src="{{filme.fondo}}" />
     </div>
     <div class="main-info-container">

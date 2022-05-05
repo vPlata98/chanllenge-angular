@@ -3,7 +3,7 @@
     <div class="search">
       <form ngNativeValidate  #form="ngForm" class="form"
         (ngSubmit)="onSubmit(valor.value)">
-        <button
+        <button aria-label="busqueda"
           type="submit" class="searchButton">
           <i class="gg-search"></i>
         </button>
@@ -30,11 +30,11 @@
     </li>
   </ul>
   <div class="pagination-container" *ngIf="busqueda.length != 0">
-    <button  class="pagination-btn" id="retroceder"
+    <button  aria-label="anterior-pagina" class="pagination-btn" id="retroceder"
       *ngIf="peliculaServiceAPI.pagina != 1" type="submit" (click)="retrocederPagina()">
       < Pagina anterior
     </button>
-    <button class="pagination-btn" *ngIf="peliculaServiceAPI.pagina != numeroPaginas"
+    <button aria-label="siguiente-pagina" class="pagination-btn" *ngIf="peliculaServiceAPI.pagina != numeroPaginas"
       id="avanzar" type="submit" (click)="avanzarPagina()">
       Pagina Siguiente >
     </button>
