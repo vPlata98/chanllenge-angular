@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { max, Observable } from 'rxjs';
 
@@ -12,6 +12,12 @@ export class PeliculasAPIService {
   baseURLDetalle  : string = "https://api.themoviedb.org/3/";
   baseURLCreditos : string = "https://api.themoviedb.org/3/";
   pagina          : number = 1;
+  apiKey          : string = "c6ae695f9781fa411c0b2970dda2f11c";
+  commonParams    : HttpParams = new HttpParams()
+    .set("api_key",this.apiKey)
+    .set("language", "en-US")
+    .set("include_adult",false);
+
   constructor(private httpClient: HttpClient) {
 
   }
@@ -32,56 +38,76 @@ export class PeliculasAPIService {
   public mostrarPeliculasPopulares(): Observable<any>{
     var date = new Date();
     var dateMon = this.formatDate(new Date(date.getFullYear(), date.getMonth() -2,date.getDay() ));
-
+    let params = this.commonParams
+      .set("primary_release_date.gte",dateMon)
+      .set("include_video", false)
+      .set("sort_by","popularity.desc")
+      .set("with_watch_monetization_types","flatrate")
+      .set("page",1);
     return this.httpClient.get<any>(
-      this.baseURLPopulares + 'movie?api_key=c6ae695f9781fa411c0b2970dda2f11c&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&primary_release_date.gte='+ dateMon);
+      this.baseURLPopulares + 'movie', {params});
   }
 
 
   public mostrarSeriesPopulares(): Observable<any>{
     var date = new Date();
     var dateMon = this.formatDate(new Date(date.getFullYear(), date.getMonth() -2,date.getDay() ));
+    let params = this.commonParams
+      .set("first_air_date.gte",dateMon)
+      .set("include_video", false)
+      .set("sort_by","popularity.desc")
+      .set("with_watch_monetization_types","flatrate")
+      .set("page",1);
     return this.httpClient.get<any>(
-      this.baseURLPopulares +
-      'tv?api_key=c6ae695f9781fa411c0b2970dda2f11c&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&first_air_date.gte='+ dateMon);
+      this.baseURLPopulares + 'tv', {params});
   }
 
   public busquedaPeliculas(nombre:string): Observable<any>{
-    var query = nombre.replace(" ","%20");
+    let params = this.commonParams
+      .set("query",nombre)
+      .set("page",this.pagina);
     return this.httpClient.get<any>(
-      this.baseURLBusqueda + 'movie?api_key=c6ae695f9781fa411c0b2970dda2f11c&language=en-US&query='
-      + query + '&page='+ this.pagina +'&include_adult=false');
+      this.baseURLBusqueda + 'movie',{params});
   }
 
   public busquedaSeries(nombre:string): Observable<any>{
-    var query = nombre.replace(" ","%20");
+    let params = this.commonParams
+      .set("query",nombre)
+      .set("page",this.pagina);
     return this.httpClient.get<any>(
-      this.baseURLBusqueda + 'tv?api_key=c6ae695f9781fa411c0b2970dda2f11c&language=en-US&query='
-      + query + '&page='+ this.pagina +'&include_adult=false');
+      this.baseURLBusqueda + 'tv',{params});
 
   }
 
   public busquedaPelicula(id: number): Observable<any>{
+    let params =this.commonParams
+      .delete("include_adult");
     return this.httpClient.get<any>(
-      `${this.baseURLDetalle}movie/${id}?api_key=c6ae695f9781fa411c0b2970dda2f11c&language=en-US`
+      `${this.baseURLDetalle}movie/${id}`,{params}
     );
   }
 
   public busquedaSerie(id: number): Observable<any>{
+    let params =this.commonParams
+      .delete("include_adult");
     return this.httpClient.get<any>(
-      `${this.baseURLDetalle}tv/${id}?api_key=c6ae695f9781fa411c0b2970dda2f11c&language=en-US`
+      `${this.baseURLDetalle}tv/${id}`,{params}
     );
   }
 
   public busquedaCreditosPelicula(id: number): Observable<any>{
+    let params =this.commonParams
+      .delete("include_adult");
     return this.httpClient.get<any>(
-      `${this.baseURLCreditos}movie/${id}/credits?api_key=c6ae695f9781fa411c0b2970dda2f11c&language=en-US`
+      `${this.baseURLCreditos}movie/${id}/credits?`, {params}
     )
   }
 
   public busquedaCreditosSerie(id: number): Observable<any>{
+    let params =this.commonParams
+      .delete("include_adult");
     return this.httpClient.get<any>(
-      `${this.baseURLCreditos}tv/${id}/credits?api_key=c6ae695f9781fa411c0b2970dda2f11c&language=en-US`
+      `${this.baseURLCreditos}tv/${id}/credits`, {params}
     )
   }
 

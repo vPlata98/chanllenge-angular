@@ -7,7 +7,7 @@
           type="submit" class="searchButton">
           <i class="gg-search"></i>
         </button>
-        <input required #valor value=""
+        <input list="historial" required #valor value=""
           name="busqueda" type="text" class="searchTerm" placeholder="buscar">
       </form>
     </div>
@@ -21,7 +21,7 @@
       <div
         class="item">
         <a routerLink="{{'/detalle/'+ item.categoria + '/' + item.id}}">
-          <img appImgNotFound
+          <img appImgNotFound [alt]="item.nombre"
             src="{{item.poster}}" />
           <p *ngIf="item.nombre"
             class="title"> {{item.nombre}} ({{item.anioSalida ? item.anioSalida.slice(0,4) : ""}}) </p>
@@ -40,3 +40,7 @@
     </button>
   </div>
 </div>
+<datalist id="historial">
+  <option *ngFor="let item of historial" [value]="item.busqueda">
+  </option>
+</datalist>

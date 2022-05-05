@@ -29,6 +29,10 @@ export class BuscadorComponent implements OnInit {
     public peliculaServiceAPI: PeliculasAPIService,
     private route: Router) { }
 
+
+  get historial(){
+    return this.peliculaService.historial;
+  }
   ngOnInit(): void {
     // console.log(this.routeAc.snapshot.paramMap.get("buscar"));
     console.log("Inicializar" + BuscadorComponent.buscar + this.route.url);
@@ -69,6 +73,7 @@ export class BuscadorComponent implements OnInit {
       this.peliculaServiceAPI.reiniciarPagina();
     }
     BuscadorComponent.buscar = name;
+    this.peliculaService.guardarHistorial(name);
     if(this.route.url.split(";")[0] !== "/buscador"){
       this.route.navigate(['/buscador']);
       return;

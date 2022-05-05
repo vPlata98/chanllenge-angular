@@ -17,6 +17,11 @@ export class PeliculasService {
   get lista(): Array<Filme>{
     return [...this.miLista];
   }
+
+  get historial(){
+    this.borrarHistorialCaducado();
+    return JSON.parse(localStorage.getItem("historial")!) || [];
+  }
   aniadirFilme(film:Filme){
     this.miLista.push(film);
   }
@@ -75,5 +80,35 @@ export class PeliculasService {
     });
     console.log(director);
     return director[0]["name"];
+  }
+  borrarHistorialCaducado(){
+    let historial = JSON.parse(localStorage.getItem("historial")!) || [];
+
+    historial = historial.filter((element:any) => {
+      var date = new Date();
+      let historialFecha = new Date(element.fecha);
+      var dateHour = new Date(
+        historialFecha.getFullYear(),
+        historialFecha.getMonth(),
+        historialFecha.getDate(),
+        historialFecha.getHours()+ 1);
+      console.log(historial);
+      console.log(element.busqueda);
+      if(dateHour < date  ){
+        console.log("eliminando");
+        return false;
+      }
+      return true;
+    });
+    localStorage.setItem("historial",JSON.stringify(historial));
+  }
+  guardarHistorial(name:string){
+    this.borrarHistorialCaducado();
+    let historial = JSON.parse(localStorage.getItem("historial")!) || [];
+    historial.unshift({
+      busqueda: name,
+      fecha: new Date()
+    })
+    localStorage.setItem("historial",JSON.stringify(historial.splice(0,5)));
   }
 }
