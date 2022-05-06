@@ -74,10 +74,10 @@ ul.slider div{
   height: inherit;
   top: 0;
   left: 0;
-  opacity: 0;
+  opacity: 1;
   background-color: white;
   width: 100%;
-  animation: 24s autoplay1 infinite;
+  // animation: 24s autoplay1 infinite;
 }
 
 
@@ -204,6 +204,26 @@ $bar3-top: calc($bar2-top * 2);
   // left: 80px;
 }
 
+.buttons{
+  display: flex;
+  position: absolute;
+  justify-content: space-between;
+  width: 100%;
+  bottom: 44px;
+  .button{
+    background-color: lightgray;
+    opacity:0.5;
+    font-size: 4vh;
+    font-weight: bolder;
+    width: 20px;
+    margin:0 2vh;
+    color: black;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline: inherit;
+  }
+}
 
 @media (max-width: 600px) {
   .novedades{

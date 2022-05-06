@@ -1,7 +1,7 @@
 import { FilmeDetalle } from './../interfaces/filmeDetalle';
 import { Filme } from './../interfaces/filme';
 import { Injectable } from '@angular/core';
-import { urlBase } from 'src/app/views/globals';
+import { urlBase,urlBaseFondo } from 'src/app/views/globals';
 import { Pelicula } from '../interfaces/pelicula';
 import { Serie } from '../interfaces/serie';
 
@@ -38,7 +38,7 @@ export class PeliculasService {
   crearSerie(iterator:any):Serie{
     let serie:Serie = {
       id: iterator["id"],
-      fondo: urlBase + iterator["backdrop_path"],
+      fondo: urlBaseFondo + iterator["backdrop_path"],
       nombre: iterator["name"],
       poster: urlBase + iterator["poster_path"],
       anioSalida: iterator["first_air_date"],
@@ -50,7 +50,7 @@ export class PeliculasService {
   crearPelicula(iterator:any):Pelicula{
     let pelicula:Pelicula = {
       id: iterator["id"],
-      fondo: urlBase + iterator["backdrop_path"],
+      fondo: urlBaseFondo + iterator["backdrop_path"],
       nombre: iterator["title"],
       poster: urlBase + iterator["poster_path"],
       anioSalida: iterator["release_date"],
@@ -103,11 +103,12 @@ export class PeliculasService {
   guardarLocal(itemName:string, name:any,ttl:number = 1 ){
     this.borrarLocalCaducado(itemName,ttl);
     let historial = JSON.parse(localStorage.getItem(itemName)!) || [];
-
-    historial.unshift({
-      busqueda: name,
-      fecha: new Date()
-    })
+    if( historial.filter( (ele:any) => ele.busqueda == name).length == 0){
+      historial.unshift({
+        busqueda: name,
+        fecha: new Date()
+      })
+    }
 
     localStorage.setItem(itemName,JSON.stringify(historial));
   }

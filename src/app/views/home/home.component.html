@@ -1,31 +1,18 @@
 <app-buscador></app-buscador>
 <ul class="slider">
-  <li class="slides"
-  *ngFor="let pelicula of peliculaSlider.slice(0,2)">
-      <div
-        id="{{'slide' + pelicula}}">
+  <li class="slides" *ngIf="filmeSlider">
+      <div #div class="slide"
+        id="{{'slide' + filmeSlider['id']}}">
         <!-- <b>{{ pelicula['original_title'] }}</b> -->
-        <img [alt]="pelicula.nombre"
-          appImgNotFound src="{{ pelicula.fondo}}" />
-      </div>
-  </li>
-  <li class="slides"
-  *ngFor="let serie of serieSlider.slice(0,2)">
-      <div   id="{{'slide' + serie['id']}}">
-        <!-- <b>{{ serie['original_name'] }}</b> -->
-        <img [alt]="serie.nombre"
-          appImgNotFound src="{{ serie.fondo}}" />
+        <img [alt]="filmeSlider.nombre"
+          appImgNotFound [src]= "filmeSlider.fondo" />
       </div>
   </li>
 </ul>
-<ul class="menu">
-  <li *ngFor="let pelicula of peliculaSlider.slice(0,2)">
-    <a href="{{'#slide' + pelicula.id }}"></a>
-  </li>
-  <li *ngFor="let serie of serieSlider.slice(0,2)">
-    <a href="{{'#slide' + serie.id }}"></a>
-  </li>
-</ul>
+<div class="buttons">
+  <button class="button" #retroceder id="retroceder" (click)="plusDivs(-1)"><</button>
+  <button class="button" #avanzar id="avanzar" (click)="plusDivs(+1)">></button>
+</div>
 
 <ul class="novedades">
   <li class="list">
@@ -36,7 +23,7 @@
     <div class="movies">
       <div
         *ngFor="let pelicula of peliculaSlider.slice(2,7)"
-        class="item">
+        class="item" onclick="">
         <img appImgNotFound [alt]="pelicula.nombre"
           src="{{pelicula.poster}}" />
           <p class="title"> {{pelicula.nombre}} ({{pelicula.anioSalida.slice(0,4)}}) </p>
@@ -56,4 +43,5 @@
     </div>
   </li>
 </ul>
+
 
